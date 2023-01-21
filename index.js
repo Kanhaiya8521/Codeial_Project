@@ -12,6 +12,8 @@ const db = require('./config/mongoose');
 
  const MongoStore = require('connect-mongo');
 
+ const sassMiddleware = require('node-sass-middleware');
+ 
 app.use(express.urlencoded());
 app.use(cookieParser());
 
