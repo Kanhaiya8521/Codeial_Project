@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const port = 8000;
+const port = 3000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
  // used for session cookies
@@ -11,6 +11,15 @@ const db = require('./config/mongoose');
  const passportLocal = require('./config/passport-local-strategy');
 
  const MongoStore = require('connect-mongo');
+ const sassmiddleware = require('node-sass-middleware');
+  
+ app.use(sassmiddleware({
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'extended',
+    prefix: '/css'
+ }));
 
 app.use(express.urlencoded());
 app.use(cookieParser());
