@@ -12,6 +12,9 @@ const db = require('./config/mongoose');
 
  const MongoStore = require('connect-mongo');
  const sassmiddleware = require('node-sass-middleware');
+ const flash = require('connect-flash');
+
+ const customMware = require('./config/middleware');
   
  app.use(sassmiddleware({
     src: './assets/scss',
@@ -63,6 +66,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 // use express router
 app.use('/', require('./routes'));
 
