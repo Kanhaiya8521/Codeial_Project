@@ -19,37 +19,72 @@ module.exports.index = async function(req, res){
 }
 
 module.exports.destroy = async function(req, res){
-    try {
-        // console.log('Post.findById(req.params.id)', Post.findById(req.params.id));
-    
-        let post =   await Post.findById(req.params.id);
-        //if (post.user == req.user.id){
-            // console.log('posttttt', post);
+    console.log('hiiiiiiii***************', req.params.id);
+
+    try{
+        let post = await Post.findById(req.params.id);
+
+        if (post.user == req.user.id){
             post.remove();
+
+            await Comment.deleteMany({post: req.params.id});
+
+
     
-            let deleted = await Comment.deleteMany({post: req.params.id});
-            // console.log('deleted', deleted);
             return res.json(200, {
-                message: 'Post and associated comment deleted successfully',
+                message: "Post and associated comments deleted successfully!"
             });
-            // req.flash('success', 'Post and associated comments deleted!');
-            // return res.redirect('back');
-        // }else{
-        //     req.flash('error', 'You cannot delete this post!');
-        //     return res.redirect('back');
-        // }
+        }else{
+            return res.json(401, {
+                message: "You cannot delete this post!"
+            });
+        }
 
     }catch(err){
-        console.log('****************************Error', err);
-
+        console.log('********', err);
         return res.json(500, {
             message: "Internal Server Error"
         });
-        // console.log('Error', err);
-        // return;
     }
-   
+    
 }
+
+// module.exports.destroy = async function(req, res){
+//     console.log('hiiiiiiii***************');
+//     try {
+//         // console.log('Post.findById(req.params.id)', Post.findById(req.params.id));
+    
+//         let post =   await Post.findById(req.params.id);
+//         console.log('post - id', post);
+
+//         if (post.user == req.user.id){
+//             post.remove();
+    
+//             let deleted = await Comment.deleteMany({post: req.params.id});
+//             // console.log('deleted', deleted);
+//             return res.json(200, {
+//                 message: 'Post and associated comment deleted successfully',
+//             });
+
+//         }else{
+//             console.log('!!!!!!!!!!!**88');
+
+//             return res.json(401, {
+//                 message: 'You cannot delete this post!'
+//             })
+//         }
+
+//     }catch(err){
+//         console.log('****************************Error', err);
+
+//         return res.json(500, {
+//             message: "Internal Server Error"
+//         });
+//         // console.log('Error', err);
+//         // return;
+//     }
+   
+// }
 
 // module.exports.destroy = async function(req, res){
 
