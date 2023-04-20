@@ -1,5 +1,6 @@
 const User = require('../models/user');
-
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function(req, res){
     User.findById(req.params.id, function(err, user){
@@ -31,13 +32,18 @@ module.exports.update = async function(req, res){
                     console.log('*********', err);
                     // return res.redirect('back');
                 }
-            console.log('**************', req.file);
+            // console.log('**************', req.file);
             console.log(req.body.name);
 
                 user.name = req.body.name;
                 user.email = req.body.email;
 
                 if(req.file) {
+
+                    if(user.avatar) {
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
                 user.save();
