@@ -34,8 +34,23 @@ let storage = multer.diskStorage({
         file.fieldname + "-" + Date.now() + path.extname(file.originalname));
     },
   });
+//   console.log('multer({storage: storage})', multer({storage: storage}).fileFilter);
+  const upload = multer({storage: storage, fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/svg+xml" ||
+      file.mimetype == "image/webp" ||
+      file.mimetype == "image/jpeg" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/png"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error("Only .svg, .webp, .jpg and .jpeg format allowed!"));
+    }},
+});
 
-  userSchema.statics.uploadedAvatar = multer({storage: storage}).single('avatar');
+  userSchema.statics.uploadedAvatar = upload.single('avatar');
   userSchema.statics.avatarPath = AVATAR_PATH ;
 
 const User = mongoose.model('User', userSchema);

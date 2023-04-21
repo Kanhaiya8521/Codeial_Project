@@ -32,8 +32,8 @@ module.exports.update = async function(req, res){
                     console.log('*********', err);
                     // return res.redirect('back');
                 }
-            // console.log('**************', req.file);
-            console.log(req.body.name);
+            console.log('**************', req.file);
+            // console.log(req.body.name);
 
                 user.name = req.body.name;
                 user.email = req.body.email;
