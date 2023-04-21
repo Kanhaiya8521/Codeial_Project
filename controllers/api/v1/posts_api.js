@@ -19,7 +19,7 @@ module.exports.index = async function(req, res){
 }
 
 module.exports.destroy = async function(req, res){
-    console.log('hiiiiiiii***************', req.params.id);
+    // console.log('hiiiiiiii***************', req.params.id);
 
     try{
         let post = await Post.findById(req.params.id);
