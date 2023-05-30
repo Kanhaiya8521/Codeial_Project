@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const env = require('./config/environment');
-
+const logger = require('morgan');
 const app = express();
 const port = 3000;
 const expressLayouts = require('express-ejs-layouts');
@@ -25,13 +25,19 @@ const db = require('./config/mongoose');
  chatServer.listen(5000);
  console.log('Chat server is listening on port 5000');
   const path = require('path');
- app.use(sassmiddleware({
-    src: path.join(__dirname, env.asset_path, '/scss'), //'./assets/scss',
-    dest: path.join(__dirname, env.asset_path, '/css'), //'./assets/css',
-    debug: true,
-    outputStyle: 'extended',
-    prefix: '/css'
- }));
+
+  if (env.name == "development") {
+    app.use(
+      sassmiddleware({
+        src: path.join(__dirname, env.asset_path, "/scss"), //'./assets/scss',
+        dest: path.join(__dirname, env.asset_path, "/css"), //'./assets/css',
+        debug: true,
+        outputStyle: "extended",
+        prefix: "/css",
+      })
+    );
+  }
+
 
  const sassMiddleware = require('node-sass-middleware');
  
@@ -42,6 +48,7 @@ app.use(cookieParser());
 app.use(express.static(env.asset_path));
 
 app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use(logger(env.morgan.mode, env.morgan.options));
 
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
