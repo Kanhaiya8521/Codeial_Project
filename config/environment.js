@@ -1,4 +1,4 @@
-const developement = {
+const development = {
   name: "developement",
   asset_path: "./assets",
   session_cookie_key: "blahsomething",
@@ -23,9 +23,29 @@ const developement = {
 };
 
 const production = {
-    name: 'production',
+  name: "production",
+  asset_path: process.env.CODEIAL_ASSET_PATH,
+  session_cookie_key: process.env.CODEIAL_SESSION_COOKIE_KEY,
+  db: "codeial_production",
+  smtp: {
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // use SSL
+    auth: {
+      user: "kannatokanhaiya@gmail.com",
+      pass: "oeytpzrkijughbtq", // go to myaccount.google.com/security 2step verification then on then app password
+    },
+  },
 
+  google_client_id: process.env.CODEIAL_GOOGLE_CLIENT_ID,
+  google_client_secret: process.env.CODEIAL_GOOGLE_CLIENT_SECRET,
+  google_call_back_url: process.env.CODEIAL_GOOGLE_CALL_BACK_URL,
 
-}
+  jwt_secret: process.env.CODEIAL_JWT_SECRET,
+};
 
-module.exports = developement ;
+module.exports =
+  eval(process.env.NODE_ENV) == undefined
+    ? development
+    : eval(process.env.NODE_ENV);
