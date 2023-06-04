@@ -17,3 +17,24 @@
 ::1 - - [30/May/2023:12:33:23 +0000] "GET / HTTP/1.1" 304 - "http://localhost:3000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
 ::1 - - [30/May/2023:12:33:30 +0000] "POST /posts/create HTTP/1.1" 200 263 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
 ::1 - - [30/May/2023:12:33:33 +0000] "GET / HTTP/1.1" 200 8149 "http://localhost:3000/users/sign-in" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+[0mGET / [32m200[0m 128.370 ms - 4052[0m
+[0mGET /favicon.ico [33m404[0m 11.780 ms - 150[0m
+[0mGET /users/sign-up [32m200[0m 18.747 ms - 2355[0m
+[0mGET /users/sign-in [32m200[0m 9.721 ms - 2195[0m
+[0mGET / [36m304[0m 17.485 ms - -[0m
+[0mGET /users/sign-in [36m304[0m 7.864 ms - -[0m
+[0mPOST /users/create-session [36m302[0m 23.619 ms - 46[0m
+[0mGET / [32m200[0m 18.087 ms - 5799[0m
+[0mGET /users/profile/63e872f755280d073d4c2110 [32m200[0m 21.903 ms - 2480[0m
+[0mGET /users/sign-out [36m302[0m 13.432 ms - 46[0m
+[0mGET / [32m200[0m 13.273 ms - 4052[0m
+[0mGET /users/profile/6437dd11b820511f1c77e9d8 [36m302[0m 7.367 ms - 72[0m
+[0mGET /users/sign-in [36m304[0m 4.460 ms - -[0m
+[0mGET / [32m200[0m 384.467 ms - 2908[0m
+[0mGET /favicon.ico [33m404[0m 32.853 ms - 150[0m
+[0mGET /users/sign-up [32m200[0m 22.108 ms - 2355[0m
+[0mPOST /users/create [36m302[0m 294.315 ms - 72[0m
+[0mGET /users/sign-in [32m200[0m 14.466 ms - 2195[0m
+[0mPOST /users/create-session [36m302[0m 164.779 ms - 46[0m
+[0mGET / [32m200[0m 449.394 ms - 4096[0m
+[0mPOST /posts/create [32m200[0m 503.969 ms - 270[0m
