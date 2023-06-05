@@ -32,6 +32,7 @@ const development = {
   google_client_secret: "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",
   google_call_back_url: "http://localhost:3000/users/auth/google/callback",
   jwt_secret: "codeial",
+  mongodb_url: 'mongodb+srv://kanhaiya15399:Kanhaiya%408521@cluster0.tmqvak8.mongodb.net/?retryWrites=true&w=majority',
 
   morgan: {
     mode: "dev",

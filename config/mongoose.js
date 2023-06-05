@@ -13,11 +13,10 @@
 
 // module.exports = db;
 
+
 const mongoose = require("mongoose");
 const env = require("./environment");
-mongoose.connect(
-  `mongodb+srv://kanhaiya15399:Kanhaiya%408521@cluster0.tmqvak8.mongodb.net/?retryWrites=true&w=majority`
-);
+mongoose.connect(env.mongodb_url);
 // mongoose.connect('mongodb://localhost/codeial_development');
 
 const db = mongoose.connection;
